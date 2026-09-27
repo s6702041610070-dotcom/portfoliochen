@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html lang="th" class="scroll-smooth dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>วัชสัณห์ วชิรพันธุ์ (บอย) | Game Developer Portfolio</title>
+
+    <!-- Google Fonts: Prompt & Poppins -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Lucide Icons CDN -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            primary: '#00FF41',
+                            secondary: '#0D2B1D',
+                            bg: '#0A0E0C',
+                            surface: '#121A16',
+                            card: '#16221C',
+                            accent: '#00E5FF',
+                            textMuted: '#6B9080',
+                            textLight: '#E2F1E7',
+                            border: '#1E3529'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Prompt', 'Poppins', 'sans-serif'],
+                        en: ['Poppins', 'Prompt', 'sans-serif']
+                    },
+                    boxShadow: {
+                        'neon-green': '0 0 20px rgba(0, 255, 65, 0.25)',
+                        'neon-cyan': '0 0 20px rgba(0, 229, 255, 0.25)',
+                        'glow': '0 0 35px -5px rgba(0, 255, 65, 0.3)'
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Custom Custom Scrollbar & Utility Animations */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0A0E0C;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #1E3529;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #00FF41;
+        }
+
+        .bg-grid-pattern {
+            background-image: radial-gradient(rgba(0, 255, 65, 0.1) 1px, transparent 1px);
+            background-size: 24px 24px;
+        }
+
+        .glass-card {
+            background: rgba(22, 34, 28, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(0, 255, 65, 0.12);
+        }
+
+        .glass-card:hover {
+            border-color: rgba(0, 255, 65, 0.4);
+            box-shadow: 0 0 25px rgba(0, 255, 65, 0.15);
+        }
+
+        .text-glow {
+            text-shadow: 0 0 10px rgba(0, 255, 65, 0.5);
+        }
+
+        .text-glow-cyan {
+            text-shadow: 0 0 10px rgba(0, 229, 255, 0.5);
+        }
+    </style>
+</head>
+<body class="bg-brand-bg text-brand-textLight font-sans antialiased min-h-screen selection:bg-brand-primary selection:text-brand-bg relative overflow-x-hidden">
+
+    <!-- Background Decoration Grid -->
+    <div class="fixed inset-0 bg-grid-pattern pointer-events-none z-0 opacity-40"></div>
+    <div class="fixed -top-40 -left-40 w-96 h-96 bg-brand-primary/10 rounded-full blur-3xl pointer-events-none"></div>
+    <div class="fixed top-1/2 -right-40 w-96 h-96 bg-brand-accent/10 rounded-full blur-3xl pointer-events-none"></div>
+
+    <!-- 3.1 NAVIGATION (Minimal Logo + Links + CTA) -->
+    <header class="sticky top-0 z-50 backdrop-blur-md bg-brand-bg/80 border-b border-brand-border/50 transition-all duration-300" id="mainHeader">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <!-- Logo / Nickname -->
+            <a href="#hero" class="flex items-center gap-3 group">
+                <div class="w-10 h-10 rounded-xl bg-brand-secondary border border-brand-primary/40 flex items-center justify-center font-bold text-brand-primary group-hover:scale-105 group-hover:border-brand-primary transition-all duration-300 shadow-neon-green">
+                    บ
+                </div>
+                <div class="flex flex-col">
+                    <span class="font-bold text-lg tracking-wider text-white group-hover:text-brand-primary transition-colors">บอย</span>
+                    <span class="text-xs text-brand-textMuted font-mono">DEV.PORTFOLIO</span>
+                </div>
+            </a>
+
+            <!-- Desktop Links -->
+            <nav class="hidden md:flex items-center space-x-1 lg:space-x-2">
+                <a href="#hero" class="nav-link px-4 py-2 rounded-lg text-sm font-medium text-brand-textMuted hover:text-brand-primary hover:bg-brand-secondary/50 transition-all">About Me</a>
+                <a href="#activities" class="nav-link px-4 py-2 rounded-lg text-sm font-medium text-brand-textMuted hover:text-brand-primary hover:bg-brand-secondary/50 transition-all">Learning</a>
+                <a href="#games" class="nav-link px-4 py-2 rounded-lg text-sm font-medium text-brand-textMuted hover:text-brand-primary hover:bg-brand-secondary/50 transition-all">My Games</a>
+                <a href="#contact" class="nav-link px-4 py-2 rounded-lg text-sm font-medium text-brand-textMuted hover:text-brand-primary hover:bg-brand-secondary/50 transition-all">Contact</a>
+            </nav>
+
+            <!-- CTA Button -->
+            <div class="hidden md:flex items-center gap-3">
+                <a href="#games" class="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl font-medium text-sm bg-brand-primary text-brand-bg hover:bg-brand-accent transition-all duration-300 shadow-neon-green font-semibold transform hover:-translate-y-0.5 active:translate-y-0">
+                    <i data-lucide="gamepad-2" class="w-4 h-4"></i>
+                    <span>Play My Games</span>
+                </a>
+            </div>
+
+            <!-- Mobile Menu Toggle -->
+            <button id="mobileMenuBtn" class="md:hidden p-2 rounded-xl text-brand-textMuted hover:text-brand-primary hover:bg-brand-secondary focus:outline-none" aria-label="Toggle Navigation">
+                <i data-lucide="menu" class="w-6 h-6"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Drawer Menu -->
+        <div id="mobileMenu" class="hidden md:hidden border-b border-brand-border bg-brand-surface/95 backdrop-blur-xl px-4 pt-2 pb-6 space-y-3">
+            <a href="#hero" class="mobile-nav-link block px-4 py-3 rounded-xl text-base font-medium text-brand-textLight hover:text-brand-primary hover:bg-brand-secondary">About Me</a>
+            <a href="#activities" class="mobile-nav-link block px-4 py-3 rounded-xl text-base font-medium text-brand-textLight hover:text-brand-primary hover:bg-brand-secondary">Learning</a>
+            <a href="#games" class="mobile-nav-link block px-4 py-3 rounded-xl text-base font-medium text-brand-textLight hover:text-brand-primary hover:bg-brand-secondary">My Games</a>
+            <a href="#contact" class="mobile-nav-link block px-4 py-3 rounded-xl text-base font-medium text-brand-textLight hover:text-brand-primary hover:bg-brand-secondary">Contact</a>
+            <div class="pt-2">
+                <a href="#games" class="w-full flex items-center justify-center gap-2 px-5 py-3 rounded-xl font-semibold text-brand-bg bg-brand-primary hover:bg-brand-accent shadow-neon-green">
+                    <i data-lucide="gamepad-2" class="w-5 h-5"></i>
+                    <span>Play My Games</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-24">
+
+        <!-- 1. SPLIT HERO (ABOUT ME) -->
+        <section id="hero" class="pt-6 lg:pt-12 scroll-mt-24">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+                
+                <!-- Left Column: Personal Intro -->
+                <div class="lg:col-span-7 space-y-6">
+                    <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-secondary/80 border border-brand-primary/30 text-brand-primary text-xs font-mono tracking-wider">
+                        <span class="w-2 h-2 rounded-full bg-brand-primary animate-pulse"></span>
+                        <span id="badgeClass">ชั้น ม.5/8 • Student Game Creator</span>
+                    </div>
+
+                    <div class="space-y-2">
+                        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-tight">
+                            สวัสดีครับ! ผม <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-primary via-emerald-400 to-brand-accent text-glow" id="heroFullName">วัชสัณห์ วชิรพันธุ์</span>
+                        </h1>
+                        <p class="text-xl sm:text-2xl font-medium text-brand-textMuted flex items-center gap-3">
+                            เรียกผมว่า <span class="text-brand-accent font-semibold text-glow-cyan" id="heroNickname">"เชณ"</span> (หรือ <span class="text-brand-primary">บอย</span>)
+                        </p>
+                    </div>
+
+                    <p class="text-base sm:text-lg text-brand-textMuted/90 leading-relaxed max-w-2xl" id="heroBio">
+                        ยินดีต้อนรับสู่พื้นที่รวมผลงานเกมสร้างสรรค์จากการเรียนในคลาสช่วงเช้า! เปลี่ยนความคิดและไอเดียสนุกๆ ให้กลายเป็นเกมที่เล่นได้จริงบนเว็บ
+                    </p>
+
+                    <!-- Goal Highlight Card -->
+                    <div class="p-4 sm:p-5 rounded-2xl glass-card border-l-4 border-l-brand-primary flex items-start gap-4">
+                        <div class="p-2.5 rounded-xl bg-brand-primary/10 text-brand-primary shrink-0 mt-0.5">
+                            <i data-lucide="compass" class="w-6 h-6"></i>
+                        </div>
+                        <div>
+                            <span class="text-xs font-mono uppercase tracking-widest text-brand-textMuted block mb-0.5">Goal in Life / เป้าหมายในอนาคต</span>
+                            <p class="text-lg font-bold text-white tracking-wide" id="heroGoal">" เจอวันพีชเป็นคนแรก "</p>
+                        </div>
+                    </div>
+
+                    <!-- CTA Buttons & Quick Actions -->
+                    <div class="flex flex-wrap items-center gap-4 pt-2">
+                        <a href="#games" class="px-6 py-3.5 rounded-xl bg-brand-primary text-brand-bg font-bold hover:bg-brand-accent transition-all duration-300 shadow-neon-green flex items-center gap-2 group">
+                            <span>สำรวจเกมทั้งหมด</span>
+                            <i data-lucide="arrow-right" class="w-5 h-5 group-hover:translate-x-1 transition-transform"></i>
+                        </a>
+                        <a href="#contact" class="px-6 py-3.5 rounded-xl bg-brand-card hover:bg-brand-secondary border border-brand-border text-brand-textLight font-medium transition-all flex items-center gap-2">
+                            <i data-lucide="mail" class="w-5 h-5 text-brand-primary"></i>
+                            <span>ติดต่อผู้สร้าง</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Right Column: Avatar Card & Split Visual -->
+                <div class="lg:col-span-5">
+                    <div class="relative mx-auto max-w-md lg:max-w-none">
+                        <!-- Neon Glow Ring behind avatar -->
+                        <div class="absolute -inset-1.5 bg-gradient-to-r from-brand-primary to-brand-accent rounded-3xl blur opacity-30 group-hover:opacity-100 transition duration-1000 group-hover:duration-200"></div>
+                        
+                        <div class="relative glass-card p-6 rounded-3xl space-y-5">
+                            <div class="relative overflow-hidden rounded-2xl aspect-square bg-brand-secondary/60 border border-brand-border">
+                                <img id="profileImage" src="d2806733-9615-45c5-baee-8258f09f53b1.jfif" alt="วัชสัณห์ วชิรพันธุ์ (เชณ)" class="w-full h-full object-cover object-center transform hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='https://placehold.co/600x600/0D2B1D/00FF41?text=%E0%B8%A7%E0%B8%B1%E0%B8%8A%E0%B8%AA%E0%B8%B1%E0%B8%93%E0%B8%B1%E0%B9%8C+(%E0%B9%80%E0%B8%8A%E0%B8%93)';" />
+                                
+                                <div class="absolute bottom-3 left-3 right-3 p-3 rounded-xl bg-brand-bg/80 backdrop-blur-md border border-white/10 flex items-center justify-between">
+                                    <div class="flex items-center gap-2">
+                                        <span class="w-2.5 h-2.5 rounded-full bg-brand-primary animate-ping"></span>
+                                        <span class="text-xs font-mono font-medium text-brand-textLight">Ready to Code & Play</span>
+                                    </div>
+                                    <span class="text-xs font-mono text-brand-accent">2026 Batch</span>
+                                </div>
+                            </div>
+
+                            <!-- Quick Student Meta Grid -->
+                            <div class="grid grid-cols-2 gap-3 text-center">
+                                <div class="p-3 rounded-xl bg-brand-bg/50 border border-brand-border">
+                                    <span class="text-xs text-brand-textMuted block mb-1">ระดับชั้น</span>
+                                    <span class="text-base font-bold text-brand-primary" id="metaClass">ม.5/8</span>
+                                </div>
+                                <div class="p-3 rounded-xl bg-brand-bg/50 border border-brand-border">
+                                    <span class="text-xs text-brand-textMuted block mb-1">ผลงานเกมทั้งหมด</span>
+                                    <span class="text-base font-bold text-brand-accent" id="metaGameCount">3 เกม</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- SKILLS & SPECIALTY (BENTO GRID PATTERN) -->
+        <section class="space-y-6">
+            <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b border-brand-border/60 pb-4">
+                <div>
+                    <h2 class="text-2xl sm:text-3xl font-bold text-white flex items-center gap-3">
+                        <i data-lucide="zap" class="w-7 h-7 text-brand-primary"></i>
+                        <span>ทักษะและความสามารถ</span>
+                    </h2>
+                    <p class="text-brand-textMuted text-sm mt-1">Skills, Capabilities & Character Traits</p>
+                </div>
+                <span class="text-xs font-mono text-brand-accent px-3 py-1 rounded-full bg-brand-secondary border border-brand-accent/20 w-fit">
+                    BENTO GRID PROFILE
+                </span>
+            </div>
+
+            <!-- Bento Grid Container -->
+            <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4" id="bentoContainer">
+                
+                <!-- Bento Card 1: Key Skill Highlight -->
+                <div class="md:col-span-2 glass-card p-6 rounded-2xl flex flex-col justify-between relative overflow-hidden group">
+                    <div class="absolute -right-10 -bottom-10 opacity-10 group-hover:opacity-20 transition-opacity">
+                        <i data-lucide="moon" class="w-48 h-48 text-brand-primary"></i>
+                    </div>
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="text-xs font-mono text-brand-primary uppercase tracking-wider bg-brand-primary/10 px-3 py-1 rounded-lg border border-brand-primary/20">SPECIAL ABILITY</span>
+                            <i data-lucide="bed-double" class="w-5 h-5 text-brand-primary"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-white mb-2">ทักษะหลัก: <span class="text-brand-primary" id="skillMainText">หลับง่าย</span></h3>
+                        <p class="text-sm text-brand-textMuted leading-relaxed">
+                            พลังในการชาร์จแบตชีวิตได้อย่างรวดเร็วทุกที่ทุกเวลา พร้อมตื่นขึ้นมาเขียนโค้ดและสร้างสรรค์เกมด้วยไอเดียสดใสในยามเช้า!
+                        </p>
+                    </div>
+                    <div class="mt-6 pt-4 border-t border-brand-border/50 flex items-center gap-2">
+                        <div class="w-full bg-brand-bg rounded-full h-2.5 overflow-hidden">
+                            <div class="bg-brand-primary h-2.5 rounded-full w-[95%]"></div>
+                        </div>
+                        <span class="text-xs font-mono text-brand-primary shrink-0">95% Mastery</span>
+                    </div>
+                </div>
+
+                <!-- Bento Card 2: Game Dev Stack -->
+                <div class="glass-card p-6 rounded-2xl flex flex-col justify-between">
+                    <div>
+                        <div class="p-2.5 w-fit rounded-xl bg-brand-accent/10 text-brand-accent mb-4">
+                            <i data-lucide="code-2" class="w-6 h-6"></i>
+                        </div>
+                        <h4 class="text-lg font-bold text-white mb-2">Game Creation</h4>
+                        <p class="text-xs text-brand-textMuted mb-4">สร้างเกมด้วยตรรกะ การออกแบบ และความคิดสร้างสรรค์</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="text-xs px-2.5 py-1 rounded-md bg-brand-bg border border-brand-border text-brand-textLight">Puzzle Logic</span>
+                            <span class="text-xs px-2.5 py-1 rounded-md bg-brand-bg border border-brand-border text-brand-textLight">Cooking Sim</span>
+                            <span class="text-xs px-2.5 py-1 rounded-md bg-brand-bg border border-brand-border text-brand-textLight">Action Mechanics</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bento Card 3: Morning Class Vibe -->
+                <div class="glass-card p-6 rounded-2xl flex flex-col justify-between bg-gradient-to-br from-brand-card to-brand-secondary/40">
+                    <div>
+                        <div class="p-2.5 w-fit rounded-xl bg-amber-500/10 text-amber-400 mb-4">
+                            <i data-lucide="sun" class="w-6 h-6"></i>
+                        </div>
+                        <h4 class="text-lg font-bold text-white mb-1">Morning Learner</h4>
+                        <p class="text-xs text-brand-textMuted">เรียนรู้และผลิตผลงานในช่วงเช้าทุกสัปดาห์</p>
+                    </div>
+                    <div class="mt-4 text-xs font-mono text-brand-primary flex items-center gap-2">
+                        <i data-lucide="check-circle" class="w-4 h-4"></i>
+                        <span>3 Games Completed</span>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- LEARNING / ACTIVITIES (CARD GRID PATTERN) -->
+        <section id="activities" class="space-y-6 scroll-mt-24">
+            <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b border-brand-border/60 pb-4">
+                <div>
+                    <h2 class="text-2xl sm:text-3xl font-bold text-white flex items-center gap-3">
+                        <i data-lucide="book-open" class="w-7 h-7 text-brand-accent"></i>
+                        <span>เส้นทางการเรียนรู้ช่วงเช้า</span>
+                    </h2>
+                    <p class="text-brand-textMuted text-sm mt-1">Morning Learning Activities & Game Dev Timeline</p>
+                </div>
+            </div>
+
+            <!-- Learning Activity Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6" id="learningGrid">
+                <!-- Activity Card 1 -->
+                <div class="glass-card p-6 rounded-2xl space-y-4 hover:-translate-y-1 transition-all duration-300">
+                    <div class="flex items-center justify-between text-xs font-mono text-brand-accent">
+                        <span>Phase 01</span>
+                        <span>2026</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-white">Puzzle & Logic Design</h3>
+                    <p class="text-sm text-brand-textMuted">
+                        ศึกษากลไกการแก้ปัญหา การออกแบบฉาก puzzle และการวางเงื่อนไขเพื่อสร้างเกม "บอยนักทำฟาม"
+                    </p>
+                    <div class="flex items-center gap-2 pt-2 text-xs text-brand-primary">
+                        <i data-lucide="check" class="w-4 h-4"></i>
+                        <span>สร้างเกมเสร็จสมบูรณ์</span>
+                    </div>
+                </div>
+
+                <!-- Activity Card 2 -->
+                <div class="glass-card p-6 rounded-2xl space-y-4 hover:-translate-y-1 transition-all duration-300">
+                    <div class="flex items-center justify-between text-xs font-mono text-brand-accent">
+                        <span>Phase 02</span>
+                        <span>2026</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-white">Cooking Simulation Mechanics</h3>
+                    <p class="text-sm text-brand-textMuted">
+                        เรียนรู้ระบบการทำอาหาร เวลา และการจัดการวัตถุดิบ พัฒนาเป็นเกม "บอยยอดนักปรุง"
+                    </p>
+                    <div class="flex items-center gap-2 pt-2 text-xs text-brand-primary">
+                        <i data-lucide="check" class="w-4 h-4"></i>
+                        <span>สร้างเกมเสร็จสมบูรณ์</span>
+                    </div>
+                </div>
+
+                <!-- Activity Card 3 -->
+                <div class="glass-card p-6 rounded-2xl space-y-4 hover:-translate-y-1 transition-all duration-300">
+                    <div class="flex items-center justify-between text-xs font-mono text-brand-accent">
+                        <span>Phase 03</span>
+                        <span>2026</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-white">Action & Interaction Game</h3>
+                    <p class="text-sm text-brand-textMuted">
+                        พัฒนาการตอบสนองของตัวละคร แอ็กชัน และความท้าทายในเกม "มออมอ"
+                    </p>
+                    <div class="flex items-center gap-2 pt-2 text-xs text-brand-primary">
+                        <i data-lucide="check" class="w-4 h-4"></i>
+                        <span>สร้างเกมเสร็จสมบูรณ์</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3.2 MY GAMES (FEATURED CARD + CARD GRID PATTERN) -->
+        <section id="games" class="space-y-8 scroll-mt-24">
+            <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-brand-border/60 pb-4">
+                <div>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-white flex items-center gap-3">
+                        <i data-lucide="gamepad" class="w-8 h-8 text-brand-primary"></i>
+                        <span>ผลงานเกมของฉัน (My Games)</span>
+                    </h2>
+                    <p class="text-brand-textMuted text-sm mt-1">คอลเลกชันเกมที่สร้างจากการเรียนในคลาสช่วงเช้า สนุกและทดลองเล่นได้ทันที</p>
+                </div>
+
+                <!-- Category Filter Buttons -->
+                <div class="flex flex-wrap gap-2" id="categoryFilters">
+                    <button data-filter="all" class="filter-btn px-4 py-2 rounded-xl text-xs font-semibold bg-brand-primary text-brand-bg shadow-neon-green transition-all">
+                        ทั้งหมด
+                    </button>
+                    <button data-filter="Puzzle Game" class="filter-btn px-4 py-2 rounded-xl text-xs font-semibold bg-brand-card hover:bg-brand-secondary border border-brand-border text-brand-textMuted hover:text-brand-primary transition-all">
+                        Puzzle
+                    </button>
+                    <button data-filter="Adventure Game" class="filter-btn px-4 py-2 rounded-xl text-xs font-semibold bg-brand-card hover:bg-brand-secondary border border-brand-border text-brand-textMuted hover:text-brand-primary transition-all">
+                        Adventure
+                    </button>
+                    <button data-filter="Action Game" class="filter-btn px-4 py-2 rounded-xl text-xs font-semibold bg-brand-card hover:bg-brand-secondary border border-brand-border text-brand-textMuted hover:text-brand-primary transition-all">
+                        Action
+                    </button>
+                </div>
+            </div>
+
+            <!-- FEATURED GAME CARD (GAME 1) -->
+            <div id="featuredGameContainer" class="w-full">
+                <!-- Dynamically Inserted Featured Game -->
+            </div>
+
+            <!-- CARD GRID (GAME 2, GAME 3, ETC.) -->
+            <div>
+                <h3 class="text-xl font-bold text-white mb-6 flex items-center gap-2">
+                    <i data-lucide="layout-grid" class="w-5 h-5 text-brand-accent"></i>
+                    <span>เกมทั้งหมดในคลัง</span>
+                </h3>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8" id="gamesGrid">
+                    <!-- Dynamically Inserted Game Cards -->
+                </div>
+            </div>
+
+            <!-- Empty State Container (Hidden by default) -->
+            <div id="emptyState" class="hidden glass-card p-12 text-center rounded-3xl space-y-4">
+                <i data-lucide="ghost" class="w-16 h-16 text-brand-textMuted mx-auto"></i>
+                <h3 class="text-xl font-bold text-white">ไม่พบเกมในหมวดหมู่นี้</h3>
+                <p class="text-brand-textMuted text-sm">ลองเลือกหมวดหมู่อื่นเพื่อดูผลงานเกมเพิ่มเติม</p>
+            </div>
+        </section>
+
+        <!-- 3.3 FOOTER / CONTACT SECTION (MULTI-COLUMN FOOTER) -->
+        <section id="contact" class="scroll-mt-24 pt-8">
+            <div class="glass-card rounded-3xl p-8 sm:p-12 border border-brand-primary/20 relative overflow-hidden">
+                <!-- Background Accent Glow -->
+                <div class="absolute -right-20 -top-20 w-80 h-80 bg-brand-primary/10 rounded-full blur-3xl pointer-events-none"></div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                    
+                    <div class="lg:col-span-8 space-y-4">
+                        <span class="text-xs font-mono text-brand-primary uppercase tracking-widest bg-brand-primary/10 px-3 py-1 rounded-full border border-brand-primary/20">
+                            GET IN TOUCH
+                        </span>
+                        <h2 class="text-3xl sm:text-4xl font-extrabold text-white">
+                            ชอบผลงานเกม หรืออยากพูดคุยทักทาย?
+                        </h2>
+                        <p class="text-brand-textMuted text-base max-w-xl">
+                            ผู้สร้าง: <strong class="text-white" id="footerCreatorName">วัชสัณห์ วชิรพันธุ์</strong> (เชณ ม.5/8) พร้อมเปิดรับคำแนะนำและสร้างสรรค์เกมใหม่ๆ ต่อไป!
+                        </p>
+                    </div>
+
+                    <div class="lg:col-span-4 flex flex-col sm:flex-row lg:flex-col gap-3 justify-end">
+                        <a href="#games" class="px-6 py-3.5 rounded-xl bg-brand-primary text-brand-bg font-bold text-center hover:bg-brand-accent transition-all shadow-neon-green">
+                            เล่นเกมทั้งหมดทันที
+                        </a>
+                        <button onclick="copyShareLink()" class="px-6 py-3.5 rounded-xl bg-brand-bg hover:bg-brand-secondary border border-brand-border text-brand-textLight font-medium text-center transition-all flex items-center justify-center gap-2">
+                            <i data-lucide="share-2" class="w-4 h-4 text-brand-accent"></i>
+                            <span id="copyBtnText">แชร์ Portfolio นี้</span>
+                        </button>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER BOTTOM -->
+    <footer class="mt-20 border-t border-brand-border/60 bg-brand-surface/80 py-8 relative z-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
+            <div class="flex items-center gap-3">
+                <div class="w-8 h-8 rounded-lg bg-brand-secondary border border-brand-primary/40 flex items-center justify-center font-bold text-xs text-brand-primary">
+                    บ
+                </div>
+                <div>
+                    <p class="text-sm font-semibold text-white">วัชสัณห์ วชิรพันธุ์ (เชณ)</p>
+                    <p class="text-xs text-brand-textMuted">Student Game Developer • Class 5/8</p>
+                </div>
+            </div>
+
+            <p class="text-xs text-brand-textMuted">
+                © 2026 Boy Student Portfolio. Created with Passion & Morning Classes.
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        /**
+         * EDITABLE DATA OBJECT
+         * คุณสามารถแก้ไขข้อมูลทั้งหมดใน PORTFOLIO_DATA ได้ที่นี่
+         */
+        const PORTFOLIO_DATA = {
+            profile: {
+                fullName: "วัชสัณห์ วชิรพันธุ์",
+                nickname: "เชณ",
+                logoTitle: "บอย",
+                classRoom: "5/8",
+                avatarImage: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 300' width='100%' height='100%'><defs><radialGradient id='bgGlow' cx='50%' cy='50%' r='50%'><stop offset='0%' stop-color='%230D2B1D'/><stop offset='100%' stop-color='%230A0E0C'/></radialGradient><linearGradient id='bodyGrad' x1='0%' y1='0%' x2='100%' y2='100%'><stop offset='0%' stop-color='%2300FF41'/><stop offset='100%' stop-color='%2300B32C'/></linearGradient><linearGradient id='visorGrad' x1='0%' y1='0%' x2='100%' y2='100%'><stop offset='0%' stop-color='%23E0FFFF'/><stop offset='50%' stop-color='%2300E5FF'/><stop offset='100%' stop-color='%230088A3'/></linearGradient><filter id='glow'><feGaussianBlur stdDeviation='6' result='blur'/><feComposite in='SourceGraphic' in2='blur' operator='over'/></filter></defs><rect width='300' height='300' fill='url(%23bgGlow)' rx='30'/><path d='M0,50 H300 M0,100 H300 M0,150 H300 M0,200 H300 M0,250 H300 M50,0 V300 M100,0 V300 M150,0 V300 M200,0 V300 M250,0 V300' stroke='%231E3529' stroke-width='1' opacity='0.3'/><ellipse cx='145' cy='255' rx='75' ry='18' fill='%23000' opacity='0.4'/><g transform='translate(10, 5)'><rect x='65' y='110' width='35' height='85' rx='15' fill='%2300B32C' stroke='%23051D10' stroke-width='8'/><path d='M 100 80 C 100 35, 180 35, 180 80 L 180 200 C 180 220, 165 230, 155 230 C 145 230, 145 210, 145 210 L 135 210 C 135 210, 135 230, 125 230 C 115 230, 100 220, 100 200 Z' fill='url(%23bodyGrad)' stroke='%23051D10' stroke-width='8' stroke-linejoin='round'/><ellipse cx='150' cy='100' rx='36' ry='24' fill='url(%23visorGrad)' stroke='%23051D10' stroke-width='7'/><ellipse cx='140' cy='93' rx='18' ry='10' fill='%23FFFFFF' opacity='0.8'/><path d='M 92 90 A 55 55 0 0 1 188 90' fill='none' stroke='%2300E5FF' stroke-width='8' stroke-linecap='round' filter='url(%23glow)'/><rect x='84' y='80' width='14' height='28' rx='5' fill='%2300E5FF'/><rect x='182' y='80' width='14' height='28' rx='5' fill='%2300E5FF'/><path d='M 125 42 L 133 30 L 140 38 L 147 30 L 155 42 Z' fill='%23FFD700' stroke='%23051D10' stroke-width='3'/></g></svg>",
+                bio: "พื้นที่นำเสนอผลงานเกมสร้างสรรค์จากการเรียนในคลาสช่วงเช้า สนุก ตื่นเต้น และสร้างตรรกะใหม่ๆ ในทุกๆ วัน",
+                futureGoal: "เจอวันพีชเป็นคนแรก",
+                mainSkill: "หลับง่าย"
+            },
+            games: [
+                {
+                    id: 1,
+                    title: "บอยนักทำฟาม",
+                    creator: "วัชสัณห์ วชิรพันธุ์",
+                    description: "เกมทำฟาร์มเพื่อการศึกษา ฝึกทักษะการวางแผน จัดการทรัพยากร และการแก้ปัญหาในฟาร์มสุดหรรษา",
+                    category: "Puzzle Game",
+                    year: "2026",
+                    coverImage: "https://drive.google.com/file/d/1cVvj5eVX2gTv0IxEdD9-S9gaBmwe9CQq/view?usp=sharing",
+                    gameUrl: "https://gemini.google.com/share/d/1uexwoA6rgCeZ1Zx1KDOHP3Vge_LJbK_P?usp=sharing",
+                    buttonText: "play game",
+                    isFeatured: true,
+                    tags: ["Education", "Logic", "Farming"]
+                },
+                {
+                    id: 2,
+                    title: "บอยยอดนักปรุง",
+                    creator: "วัชสัณห์ วชิรพันธุ์",
+                    description: "เกมทำอาหารผจญภัย ทดสอบความไวและการจัดการเวลาในห้องครัวสุดวุ่นวาย!",
+                    category: "Adventure Game",
+                    year: "2026",
+                    coverImage: "https://drive.google.com/file/d/1J_y9KwB-W0s0OvK7lbLAYRJ3LQ25g0Zp/view?usp=sharing",
+                    gameUrl: "https://gemini.google.com/share/d/16oVCTGUBEfJUh4kfjG63eLy69AaHfU_-?usp=sharing",
+                    buttonText: "Play Now",
+                    isFeatured: false,
+                    tags: ["Cooking", "Adventure", "Time-Management"]
+                },
+                {
+                    id: 3,
+                    title: "มออมอ",
+                    creator: "วัชสัณห์ วชิรพันธุ์",
+                    description: "เกมแอ็กชันสุดมันส์กับการผจญภัยของ มออมอ ตะลุยด่านและเผชิญความท้าทาย",
+                    category: "Action Game",
+                    year: "2026",
+                    coverImage: "https://drive.google.com/file/d/1Hcu7Ln8CX-6OVuN1DqujEGO7hUN932TO/view?usp=sharing",
+                    gameUrl: "https://gemini.google.com/share/d/19ZJ_hQhZzj0_q3SuzgxOJvr7Jz610ss9?usp=sharing",
+                    buttonText: "Play Game",
+                    isFeatured: false,
+                    tags: ["Action", "Arcade", "Fun"]
+                }
+            ]
+        };
+
+        /* Helper function to format image URLs (converts Google Drive view links to direct image source) */
+        function getFormattedImgUrl(url) {
+            if (!url) return '';
+            if (url.startsWith('data:image')) return url;
+            const driveMatch = url.match(/\/file\/d\/([^\/]+)/);
+            if (driveMatch && driveMatch[1]) {
+                return `https://lh3.googleusercontent.com/d/${driveMatch[1]}`;
+            }
+            return url;
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            initProfileData();
+            renderGames('all');
+            setupFilters();
+            setupMobileMenu();
+            
+            // Re-initialize Lucide Icons after dynamic rendering
+            if (window.lucide) {
+                lucide.createIcons();
+            }
+        });
+
+        /* Populate Profile Data into DOM */
+        function initProfileData() {
+            const p = PORTFOLIO_DATA.profile;
+            document.getElementById('heroFullName').textContent = p.fullName;
+            document.getElementById('heroNickname').textContent = `"${p.nickname}"`;
+            document.getElementById('badgeClass').textContent = `ชั้น ม.${p.classRoom} • Student Game Creator`;
+            document.getElementById('metaClass').textContent = `ม.${p.classRoom}`;
+            document.getElementById('heroGoal').textContent = `"${p.futureGoal}"`;
+            document.getElementById('skillMainText').textContent = p.mainSkill;
+            document.getElementById('heroBio').textContent = p.bio;
+            document.getElementById('footerCreatorName').textContent = p.fullName;
+            document.getElementById('metaGameCount').textContent = `${PORTFOLIO_DATA.games.length} เกม`;
+            
+            const profileImg = document.getElementById('profileImage');
+            if (profileImg && p.avatarImage) {
+                profileImg.src = getFormattedImgUrl(p.avatarImage);
+            }
+        }
+
+        /* Render Featured & Grid Game Cards */
+        function renderGames(filterCategory = 'all') {
+            const featuredContainer = document.getElementById('featuredGameContainer');
+            const gridContainer = document.getElementById('gamesGrid');
+            const emptyState = document.getElementById('emptyState');
+
+            const filteredGames = filterCategory === 'all' 
+                ? PORTFOLIO_DATA.games 
+                : PORTFOLIO_DATA.games.filter(g => g.category.toLowerCase().includes(filterCategory.toLowerCase()));
+
+            featuredContainer.innerHTML = '';
+            gridContainer.innerHTML = '';
+
+            if (filteredGames.length === 0) {
+                emptyState.classList.remove('hidden');
+                return;
+            } else {
+                emptyState.classList.add('hidden');
+            }
+
+            // Find featured game or take the first one
+            const featuredGame = filteredGames.find(g => g.isFeatured) || (filterCategory === 'all' ? filteredGames[0] : null);
+            const standardGames = featuredGame ? filteredGames.filter(g => g.id !== featuredGame.id) : filteredGames;
+
+            // Render Featured Card
+            if (featuredGame) {
+                const featuredImgSrc = getFormattedImgUrl(featuredGame.coverImage);
+                featuredContainer.innerHTML = `
+                    <div class="glass-card rounded-3xl overflow-hidden border border-brand-primary/30 p-6 lg:p-8 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center hover:border-brand-primary/60 transition-all duration-300">
+                        <div class="lg:col-span-7 relative group overflow-hidden rounded-2xl aspect-video bg-brand-secondary/80 border border-brand-border">
+                            <img src="${featuredImgSrc}" alt="${featuredGame.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='https://placehold.co/800x450/0D2B1D/00FF41?text=${encodeURIComponent(featuredGame.title)}';" />
+                            <div class="absolute top-3 left-3 bg-brand-primary text-brand-bg text-xs font-bold font-mono px-3 py-1 rounded-full uppercase shadow-neon-green">
+                                ★ Featured Game
+                            </div>
+                        </div>
+
+                        <div class="lg:col-span-5 space-y-5">
+                            <div class="flex items-center justify-between text-xs font-mono text-brand-textMuted">
+                                <span class="text-brand-accent font-semibold px-2.5 py-1 rounded-md bg-brand-accent/10 border border-brand-accent/20">${featuredGame.category}</span>
+                                <span>${featuredGame.year}</span>
+                            </div>
+
+                            <div class="space-y-2">
+                                <h3 class="text-2xl sm:text-3xl font-extrabold text-white group-hover:text-brand-primary transition-colors">${featuredGame.title}</h3>
+                                <p class="text-xs text-brand-textMuted font-mono">ผู้สร้าง: ${featuredGame.creator}</p>
+                            </div>
+
+                            <p class="text-brand-textLight/90 text-sm leading-relaxed">
+                                ${featuredGame.description}
+                            </p>
+
+                            <div class="flex flex-wrap gap-2">
+                                ${featuredGame.tags.map(tag => `<span class="text-[11px] font-mono px-2.5 py-1 rounded-md bg-brand-bg border border-brand-border text-brand-textMuted">#${tag}</span>`).join('')}
+                            </div>
+
+                            <div class="pt-2">
+                                <a href="${featuredGame.gameUrl}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-brand-primary text-brand-bg font-bold hover:bg-brand-accent transition-all duration-300 shadow-neon-green group">
+                                    <i data-lucide="play" class="w-4 h-4 fill-current"></i>
+                                    <span class="capitalize">${featuredGame.buttonText}</span>
+                                    <i data-lucide="external-link" class="w-4 h-4 group-hover:translate-x-0.5 transition-transform"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }
+
+            // Render Standard Cards Grid
+            standardGames.forEach(game => {
+                const cardImgSrc = getFormattedImgUrl(game.coverImage);
+                const card = document.createElement('div');
+                card.className = 'glass-card rounded-2xl overflow-hidden flex flex-col justify-between border border-brand-border/80 hover:border-brand-primary/40 transition-all duration-300 group';
+                card.innerHTML = `
+                    <div>
+                        <div class="relative overflow-hidden aspect-video bg-brand-secondary/60">
+                            <img src="${cardImgSrc}" alt="${game.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='https://placehold.co/600x340/0D2B1D/00E5FF?text=${encodeURIComponent(game.title)}';" />
+                            <div class="absolute top-3 left-3 bg-brand-bg/80 backdrop-blur-md text-brand-accent text-xs font-mono font-medium px-2.5 py-1 rounded-md border border-brand-accent/20">
+                                ${game.category}
+                            </div>
+                            <div class="absolute top-3 right-3 bg-brand-bg/80 backdrop-blur-md text-brand-textMuted text-xs font-mono px-2 py-1 rounded-md">
+                                ${game.year}
+                            </div>
+                        </div>
+
+                        <div class="p-6 space-y-3">
+                            <div class="flex items-center justify-between">
+                                <h4 class="text-xl font-bold text-white group-hover:text-brand-primary transition-colors">${game.title}</h4>
+                            </div>
+                            <p class="text-xs text-brand-textMuted font-mono">ผู้สร้าง: ${game.creator}</p>
+                            <p class="text-sm text-brand-textMuted leading-relaxed line-clamp-3">
+                                ${game.description}
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="p-6 pt-0 space-y-4">
+                        <div class="flex flex-wrap gap-1.5">
+                            ${game.tags.map(tag => `<span class="text-[10px] font-mono px-2 py-0.5 rounded bg-brand-bg/80 border border-brand-border text-brand-textMuted">#${tag}</span>`).join('')}
+                        </div>
+
+                        <a href="${game.gameUrl}" target="_blank" rel="noopener noreferrer" class="w-full inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-brand-card hover:bg-brand-primary hover:text-brand-bg border border-brand-primary/40 text-brand-primary font-semibold text-sm transition-all duration-300 shadow-sm group/btn">
+                            <i data-lucide="play" class="w-4 h-4 fill-current"></i>
+                            <span class="capitalize">${game.buttonText}</span>
+                            <i data-lucide="external-link" class="w-3.5 h-3.5 group-hover/btn:translate-x-0.5 transition-transform"></i>
+                        </a>
+                    </div>
+                `;
+                gridContainer.appendChild(card);
+            });
+
+            // Re-call Lucide createIcons for new elements
+            if (window.lucide) {
+                lucide.createIcons();
+            }
+        }
+
+        /* Category Filter Buttons Logic */
+        function setupFilters() {
+            const filterBtns = document.querySelectorAll('.filter-btn');
+            filterBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    filterBtns.forEach(b => {
+                        b.classList.remove('bg-brand-primary', 'text-brand-bg', 'shadow-neon-green');
+                        b.classList.add('bg-brand-card', 'text-brand-textMuted', 'border', 'border-brand-border');
+                    });
+
+                    btn.classList.remove('bg-brand-card', 'text-brand-textMuted', 'border', 'border-brand-border');
+                    btn.classList.add('bg-brand-primary', 'text-brand-bg', 'shadow-neon-green');
+
+                    const category = btn.getAttribute('data-filter');
+                    renderGames(category);
+                });
+            });
+        }
+
+        /* Mobile Drawer Menu Toggle */
+        function setupMobileMenu() {
+            const btn = document.getElementById('mobileMenuBtn');
+            const menu = document.getElementById('mobileMenu');
+            const links = document.querySelectorAll('.mobile-nav-link');
+
+            if (btn && menu) {
+                btn.addEventListener('click', () => {
+                    menu.classList.toggle('hidden');
+                });
+
+                links.forEach(link => {
+                    link.addEventListener('click', () => {
+                        menu.classList.add('hidden');
+                    });
+                });
+            }
+        }
+
+        /* Copy Portfolio Link to Clipboard */
+        function copyShareLink() {
+            const copyBtnText = document.getElementById('copyBtnText');
+            const dummyInput = document.createElement('input');
+            document.body.appendChild(dummyInput);
+            dummyInput.value = window.location.href;
+            dummyInput.select();
+            document.execCommand('copy');
+            document.body.removeChild(dummyInput);
+
+            if (copyBtnText) {
+                const originalText = copyBtnText.textContent;
+                copyBtnText.textContent = 'คัดลอกลิงก์สำเร็จ!';
+                setTimeout(() => {
+                    copyBtnText.textContent = originalText;
+                }, 2500);
+            }
+        }
+    </script>
+</body>
+</html>
